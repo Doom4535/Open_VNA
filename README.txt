@@ -5,9 +5,9 @@ The current developement plan is to isolate the individual code components into 
 										main.c
 										|
 --------------------------------------------------------------------------------------------------------------------
-			|					|						|							|
-	Communications			Innitializations			   Bootup						VNA.c	
-   |	      |	   	|			-currently handled		-Powers up components			The main control code for the
-  I2C    SPI  	    UART		in main.c				 and enables device				actual VNA implementation.
--Clock   -ADC		-PC						 		 when ready						|		|		|		|
-						 						 									------Sub. code/routines------
+			|							|						|							 |
+   ---Communications---			Innitializations			   Bootup						VNA.c	
+   |	    |	   	 |			-currently handled		-Powers up components			The main control code for the
+  I2C      SPI  	UART		in main.c				 and enables device				actual VNA implementation.
+-Clock     -ADC		-PC						 		 	 when ready						  |		  |		  |		  |
+						 						 									  	------Sub. code/routines------
