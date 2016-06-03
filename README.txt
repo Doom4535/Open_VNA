@@ -2,12 +2,21 @@ This is the software portion of an attempt at an open vector network analyzer de
 
 The current developement plan is to isolate the individual code components into seperate files based on their purpose:
 
-										main.c
-										|
---------------------------------------------------------------------------------------------------------------------
-			|							|						|							 |
-   ---Communications---			Innitializations			   Bootup						VNA.c	
-   |	    |	   	 |			-currently handled		-Powers up components			The main control code for the
-  I2C      SPI  	UART		in main.c				 and enables device				actual VNA implementation.
--Clock     -ADC		-PC						 		 	 when ready						  |		  |		  |		  |
-						 						 									  	------Sub. code/routines------
+
+Current code structure
+						 						 									  	
+- main.c
+	-Initializations	-> currently to be implemented in main.c, used to declare dependencies, ect.
+	
+	-Bootup -> stores any files related to the initial loading of the device
+		-bootloader.c	-> may start with a simple timer, and move to something that actually monitors loading progress
+	
+	-Communications		-> used to control communication protocols
+		-I2C_module.c  (clock)
+		-SPI_module.c  (ADC)
+		-UART_module.c (PC)
+	
+	-VNA.c	-> controls the actual signal analysis
+		-VNA_submodules	-> used to separate core functions/components
+			-Fourier_Series.c
+			-ect.							 						 									  	
