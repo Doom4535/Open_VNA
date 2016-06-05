@@ -51,10 +51,8 @@ main.obj: /Applications/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/s
 main.obj: ../printf.h
 main.obj: /Applications/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/math.h
 main.obj: /Applications/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/_defs.h
-main.obj: ../Communication_Modules/I2C_module.c
-main.obj: ../Communication_Modules/SPI_module.c
-main.obj: ../Communication_Modules/UART_module.c
-main.obj: ../Communication_Modules/../common.h
+main.obj: ../Communication_Modules/UART_module.h
+main.obj: ../common.h
 main.obj: ../Startup/bootloader.c
 main.obj: ../VNA_Functions/VNA.c
 
@@ -109,9 +107,7 @@ main.obj: ../VNA_Functions/VNA.c
 ../printf.h: 
 /Applications/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/math.h: 
 /Applications/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/_defs.h: 
-../Communication_Modules/I2C_module.c: 
-../Communication_Modules/SPI_module.c: 
-../Communication_Modules/UART_module.c: 
-../Communication_Modules/../common.h: 
+../Communication_Modules/UART_module.h: 
+../common.h: 
 ../Startup/bootloader.c: 
 ../VNA_Functions/VNA.c: 

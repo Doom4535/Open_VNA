@@ -19,13 +19,13 @@
 #include "printf.h"
 #include <math.h>
 
-#include "msp.h"
+//#include "msp.h"
 
 /* Code files to include */
 // Communications modules, located in Communication_Modules folder
-#include "Communication_Modules/I2C_module.c"
-#include "Communication_Modules/SPI_module.c"
-#include "Communication_Modules/UART_module.c"
+//#include "Communication_Modules/I2C_module.c"
+//#include "Communication_Modules/SPI_module.c"
+#include "Communication_Modules/UART_module.h"
 #include "common.h"
 
 // Startup modules, located in Startup folder
@@ -40,5 +40,23 @@ void main(void)	// This should call all the other needed modules (any initializa
 	
     WDTCTL = WDTPW | WDTHOLD;           // Stop watchdog timer
 	
+    while(1){
+    		if(uartEndOfLineFlag){  /* Parse this command line. */
+    			if(uartRXData[0]=='t'){
+    				printf("%c", 'Congraduations, the simple test passed');
+    				wait(0.5);
+    			}
+    			else if(uartRXData[0]=='s'){
+    				printf("%c", "Well, there's egg and bacon; egg sausage and bacon; egg and spam; egg bacon and spam; egg bacon sausage and spam; spam bacon sausage and spam; spam egg spam spam bacon and spam; spam sausage spam spam bacon spam tomato and spam");
+    				wait(0.5);
+    			}
+    			else{
+    				printf("%c", "Why are you ignoring me?");
+    				wait(0.5);
+    			}
+
+    		}
+
+    	}
 
 }

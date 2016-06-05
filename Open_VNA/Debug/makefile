@@ -174,7 +174,7 @@ BIN_OUTPUTS__QUOTED += \
 
 
 # All Target
-all: Open_VNA.out
+all: Open_VNA.out secondary-outputs
 
 # Tool invocations
 Open_VNA.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
@@ -199,6 +199,8 @@ clean:
 	-$(RM) "driverlib/MSP432P4xx/wdt_a.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
+
+secondary-outputs: $(BIN_OUTPUTS)
 
 .PHONY: all clean dependents
 .SECONDARY:
