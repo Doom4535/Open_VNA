@@ -49,23 +49,23 @@ void main(void)	// This should call all the other needed modules (any initializa
 	}
 	
     while(1){
-    	printf("random data \r\n");
-    	//printf("Random data /n");
+    	//printf("random data \r\n");
+    	//printf("Random data \n");
     		if(uartEndOfLineFlag){  /* Parse this command line. */
     			if(uartRXData[0]=='t'){
-    				printf("%c", "Congraduations, the simple test passed");
+    				printf("Congraduations, the simple test passed \r\n");
     				volatile int i = 0;	// counting variable for delay
     				while(i < 48000000)		// delaying/sleeping for about 1 sec (using clock speed of 48 MHz)
     				i++;
     			}
     			else if(uartRXData[0]=='s'){
-    				printf("%c", "Well, there's egg and bacon; egg sausage and bacon; egg and spam; egg bacon and spam; egg bacon sausage and spam; spam bacon sausage and spam; spam egg spam spam bacon and spam; spam sausage spam spam bacon spam tomato and spam");
+    				printf("Well, there's egg and bacon; egg sausage and bacon; egg and spam; egg bacon and spam; egg bacon sausage and spam; spam bacon sausage and spam; spam egg spam spam bacon and spam; spam sausage spam spam bacon spam tomato and spam \r\n");
     				volatile int i = 0;	// counting variable for delay
     				while(i < 3,000,000)		// delaying/sleeping for about 1 sec (using default clock speed of 1 MHz
     				i++;
     			}
     			else{
-    				printf("%c", "Why are you ignoring me?");
+    				printf("Why are you ignoring me? \r\n");
     				volatile int i = 0;	// counting variable for delay
     				while(i < 3,000,000)		// delaying/sleeping for about 1 sec (using default clock speed of 1 MHz
     				i++;

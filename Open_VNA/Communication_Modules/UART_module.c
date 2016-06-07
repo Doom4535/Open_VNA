@@ -69,8 +69,9 @@ const eUSCI_UART_Config uartConfig =
 //		EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION // Oversampling Mode
         EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION  // Low Frequency Mode
 };
-//extern char uartRXData[80] = { [0 ... 79] = 0 };
+/* Array used to store received data */
 char uartRXData[80];
+/* Used to determine if we are at the end of a transmission */
 bool uartEndOfLineFlag = false;
 
 /*
@@ -78,6 +79,7 @@ bool uartEndOfLineFlag = false;
  * For interrupts, don't forget to edit the startup...c file!
  */
 
+/* Interrupt subroutine that is triggered whenever data is received over serial */
 void EusciA0_ISR(void)
 {
     static int i=0;
@@ -107,6 +109,7 @@ void EusciA0_ISR(void)
 }
 
 // will want to move this to start up later
+/* Intializes the system clock */
 void initializeClocks(void)
 {
     /* Initialize main clock to 48MHz.  To make it 3 MHz change the 48 to 3
