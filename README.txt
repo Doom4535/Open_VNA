@@ -1,6 +1,6 @@
 This is the software portion of an attempt at an open vector network analyzer design.
 
-The current developement plan is to isolate the individual code components into seperate files based on their purpose:
+The current development plan is to isolate the individual code components into separate files based on their purpose:
 
 
 Current code structure
