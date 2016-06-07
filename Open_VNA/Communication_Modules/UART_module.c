@@ -37,7 +37,7 @@
  * On Linux use /dev/ttyACM0, 115200, 8N1.
  *               CuteCom works well.
  */
-extern const eUSCI_UART_Config uartConfig =
+const eUSCI_UART_Config uartConfig =
 {
         EUSCI_A_UART_CLOCKSOURCE_SMCLK,          // SMCLK Clock Source
         78,                                      // BRDIV = 26 for 115200 baud
@@ -50,9 +50,14 @@ extern const eUSCI_UART_Config uartConfig =
 //		EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION // Oversampling Mode
         EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION  // Low Frequency Mode
 };
-extern char uartRXData[80] = { [0 ... 79] = 'a' };
-//char uartRXData[80];
-extern bool uartEndOfLineFlag = false;
+//extern char uartRXData[80] = { [0 ... 79] = 0 };
+char uartRXData[80];
+bool uartEndOfLineFlag = false;
+
+/*
+ * USCIA0 interrupt handler for backchannel UART.
+ * For interrupts, don't forget to edit the startup...c file!
+ */
 
 void EusciA0_ISR(void)
 {
@@ -73,13 +78,25 @@ void EusciA0_ISR(void)
     if(status & EUSCI_A_UART_RECEIVE_INTERRUPT)
     {
         uartRXData[i] = UART_receiveData(EUSCI_A0_BASE);
-        if(uartRXData[i++]==0x0d)
+        if(uartRXData[i++]==0x0d)		// was 0x0d
         {
         	uartEndOfLineFlag = true;
         	uartRXData[i] = 0;  // To end the array.
         	i=0; // Get ready for the next command.
         }
     }
+}
+
+// will want to move this to start up later
+void initializeClocks(void)
+{
+    /* Initialize main clock to 48MHz.  To make it 3 MHz change the 48 to 3
+     * and the 16's to 1.*/
+	PCM_setCoreVoltageLevel(PCM_VCORE1);
+    CS_setDCOCenteredFrequency(CS_DCO_FREQUENCY_48); // Full speed
+    CS_initClockSignal(CS_MCLK, CS_DCOCLK_SELECT, CS_CLOCK_DIVIDER_16 );
+    MAP_CS_initClockSignal(CS_HSMCLK, CS_DCOCLK_SELECT, CS_CLOCK_DIVIDER_16 );
+    MAP_CS_initClockSignal(CS_SMCLK, CS_DCOCLK_SELECT, CS_CLOCK_DIVIDER_16 );
 }
 
 /*  We may want to use P3.2 and P3.3 as a Bluetooth UART because the
@@ -108,5 +125,6 @@ int initializeBackChannelUART(void){
     UART_enableInterrupt(EUSCI_A0_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT);
     		/*EUSCI_A_SPI_TRANSMIT_INTERRUPT);*/
     Interrupt_enableInterrupt(INT_EUSCIA0);
+    //EusciA0_ISR();	// adding this? <-------------
     return 1;
 }

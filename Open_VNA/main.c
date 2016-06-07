@@ -39,20 +39,34 @@ void main(void)	// This should call all the other needed modules (any initializa
 {
 	
     WDTCTL = WDTPW | WDTHOLD;           // Stop watchdog timer
+
+
+    // will want to probably move this to startup
+    while(!initializeBackChannelUART())
+    {
+    		volatile int i = 0;
+		for(i=0;i<100;i++);  /*Wait to try again. */
+	}
 	
     while(1){
     		if(uartEndOfLineFlag){  /* Parse this command line. */
     			if(uartRXData[0]=='t'){
-    				printf("%c", 'Congraduations, the simple test passed');
-    				wait(0.5);
+    				printf("%c", "Congraduations, the simple test passed");
+    				volatile int i = 0;	// counting variable for delay
+    				while(i < 3,000,000)		// delaying/sleeping for about 1 sec (using default clock speed of 1 MHz
+    				i++;
     			}
     			else if(uartRXData[0]=='s'){
     				printf("%c", "Well, there's egg and bacon; egg sausage and bacon; egg and spam; egg bacon and spam; egg bacon sausage and spam; spam bacon sausage and spam; spam egg spam spam bacon and spam; spam sausage spam spam bacon spam tomato and spam");
-    				wait(0.5);
+    				volatile int i = 0;	// counting variable for delay
+    				while(i < 3,000,000)		// delaying/sleeping for about 1 sec (using default clock speed of 1 MHz
+    				i++;
     			}
     			else{
     				printf("%c", "Why are you ignoring me?");
-    				wait(0.5);
+    				volatile int i = 0;	// counting variable for delay
+    				while(i < 3,000,000)		// delaying/sleeping for about 1 sec (using default clock speed of 1 MHz
+    				i++;
     			}
 
     		}

@@ -64,15 +64,15 @@ void PORT1_IRQHandler(void)
     /* Toggling the output on the LED */
     while(status & (GPIO_PIN0==0))
     {
-    	RXHold=RXData*256
-    	RXData = SPI_receiveData(EUSCI_B0_BASE);
-    	RXHold=RXHold+RXData;
-    	count++;
-    	if (count==3)
-    	{
-    	i++;
-    	resultsBuffer[i]=RXHold;
-    	}
+    		RXHold=RXData*256
+    		RXData = SPI_receiveData(EUSCI_B0_BASE);
+    		RXHold=RXHold+RXData;
+    		count++;
+    		if (count==3)
+    		{
+    		i++;
+    		resultsBuffer[i]=RXHold;
+    		}
     }
 
 }

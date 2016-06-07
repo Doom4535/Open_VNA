@@ -9,10 +9,10 @@
 #define COMMUNICATION_MODULES_UART_MODULE_H_
 
 extern const eUSCI_UART_Config uartConfig;
-extern const char uartRXData[80];  // should this be uartRXData[80] (extern?)
+extern char uartRXData[80];  // should this be uartRXData[80] (extern?)
 extern bool uartEndOfLineFlag; // should this be static?
 
-void EusciA0_ISR(void);
+extern void EusciA0_ISR(void);
 
 int initializeBackChannelUART(void);
 
