@@ -37,12 +37,31 @@
  * On Linux use /dev/ttyACM0, 115200, 8N1.
  *               CuteCom works well.
  */
+
+/*
+ * This configuration below seems to run at some unknown rate at the present time
 const eUSCI_UART_Config uartConfig =
 {
         EUSCI_A_UART_CLOCKSOURCE_SMCLK,          // SMCLK Clock Source
         78,                                      // BRDIV = 26 for 115200 baud
         0,                                       // UCxBRF = 0 for 115200 baud
         0x10,                                       // UCxBRS = 0 for 115200 baud
+        EUSCI_A_UART_NO_PARITY,                  // No Parity
+        EUSCI_A_UART_LSB_FIRST,                  // MSB First
+        EUSCI_A_UART_ONE_STOP_BIT,               // One stop bit
+        EUSCI_A_UART_MODE,                       // UART mode
+//		EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION // Oversampling Mode
+        EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION  // Low Frequency Mode
+};
+*/
+
+// This configuration below for some reason seems to actually run at 460800 baud install of 115200...
+const eUSCI_UART_Config uartConfig =
+{
+        EUSCI_A_UART_CLOCKSOURCE_SMCLK,          // SMCLK Clock Source
+        26,                                      // BRDIV = 26 for 115200 baud
+        0,                                       // UCxBRF = 0 for 115200 baud
+        0,                                       // UCxBRS = 0 for 115200 baud
         EUSCI_A_UART_NO_PARITY,                  // No Parity
         EUSCI_A_UART_LSB_FIRST,                  // MSB First
         EUSCI_A_UART_ONE_STOP_BIT,               // One stop bit

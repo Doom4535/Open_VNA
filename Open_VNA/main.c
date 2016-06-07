@@ -49,11 +49,13 @@ void main(void)	// This should call all the other needed modules (any initializa
 	}
 	
     while(1){
+    	printf("random data \r\n");
+    	//printf("Random data /n");
     		if(uartEndOfLineFlag){  /* Parse this command line. */
     			if(uartRXData[0]=='t'){
     				printf("%c", "Congraduations, the simple test passed");
     				volatile int i = 0;	// counting variable for delay
-    				while(i < 3,000,000)		// delaying/sleeping for about 1 sec (using default clock speed of 1 MHz
+    				while(i < 48000000)		// delaying/sleeping for about 1 sec (using clock speed of 48 MHz)
     				i++;
     			}
     			else if(uartRXData[0]=='s'){
