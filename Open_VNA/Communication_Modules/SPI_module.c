@@ -38,13 +38,16 @@ const eUSCI_SPI_MasterConfig spiMasterConfig =
 };
 
 // remember to modify the startup file for the SPI interrupt
+/* used to initialize SPI communication for the ADC (insert model name here) */
 int initialize_SPI_com(void)
 {
 	MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P6, GPIO_PIN0);
 	  MAP_GPIO_clearInterruptFlag(GPIO_PORT_P6, GPIO_PIN0);
 	    MAP_GPIO_enableInterrupt(GPIO_PORT_P6, GPIO_PIN0);
 	    MAP_Interrupt_enableInterrupt(INT_PORT6);
-	void GPIO_interruptEdgeSelect(GPIO_PORT_P6,GPIO_PIN0,GPIO_HIGH_TO_LOW_TRANSITION);
+	// seems like this code doesn't need the void declaration
+	GPIO_interruptEdgeSelect(GPIO_PORT_P6,GPIO_PIN0,GPIO_HIGH_TO_LOW_TRANSITION);
+	//void GPIO_interruptEdgeSelect(GPIO_PORT_P6,GPIO_PIN0,GPIO_HIGH_TO_LOW_TRANSITION);
 	/* Enabling SRAM Bank Retention */
 	    MAP_SysCtl_enableSRAMBankRetention(SYSCTL_SRAM_BANK1);
 
@@ -61,6 +64,7 @@ int initialize_SPI_com(void)
 	        SPI_initMaster(EUSCI_B0_BASE, &spiMasterConfig);
 	        /* Enable SPI module */
 	            SPI_enableModule(EUSCI_B0_BASE);
+	  //return(1);
 }
 
 //void PORT1_IRQHandler(void)
@@ -74,7 +78,7 @@ void PORT1_SPI_ISR(void)
     /* Toggling the output on the LED */
     while(status & (GPIO_PIN0==0))
     {
-    		RXHold=RXData*256
+    		RXHold=RXData*256;
     		RXData = SPI_receiveData(EUSCI_B0_BASE);
     		RXHold=RXHold+RXData;
     		count++;
