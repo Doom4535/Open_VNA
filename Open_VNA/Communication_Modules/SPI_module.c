@@ -15,6 +15,8 @@
 #include <stdbool.h>
 
 uint32_t resultsBuffer[3]={0,0,0};
+/* storing the data in a global variable to enable access with distinguishing name*/
+uint32_t SPI_RXData = resultsBuffer;
 
 /* CS on Pin 4.7
  * SCLK on Pin 1.5
@@ -88,6 +90,8 @@ void PORT1_SPI_ISR(void)
     		resultsBuffer[i]=RXHold;
     		}
     }
+    /* storing the data in a global variable to enable access */
+    SPI_RXData = resultsBuffer;
 
 }
 

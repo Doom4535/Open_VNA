@@ -8,7 +8,8 @@
 #ifndef COMMUNICATION_MODULES_SPI_MODULE_H_
 #define COMMUNICATION_MODULES_SPI_MODULE_H_
 
-extern uint32_t resultsBuffer[3];
+//extern uint32_t resultsBuffer[3]; //using SPI_RXData instead as the global variable
+extern uint32_t SPI_RXData;
 //extern static volatile uint32_t RXData = 0;
 //extern static volatile uint8_t RXHold = 0;
 //extern const eUSCI_SPI_MasterConfig spiMasterConfig;
