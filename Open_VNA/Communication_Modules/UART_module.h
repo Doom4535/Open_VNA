@@ -14,7 +14,8 @@ extern bool uartEndOfLineFlag;
 
 extern void EusciA0_ISR(void);
 
-int initializeBackChannelUART(void);
+//int initializeBackChannelUART(void);
+extern int initializeBackChannelUART(void);
 
 
 #endif /* COMMUNICATION_MODULES_UART_MODULE_H_ */
